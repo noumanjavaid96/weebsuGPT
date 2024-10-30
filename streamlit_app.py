@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 import openai
-openai.api_key = st.secrets["API_key"]
+client = OpenAI (api_key = st.secrets["API_key"])
 import hashlib
 from PIL import Image
 
@@ -14,8 +14,8 @@ def append_history(history, item):
     return history
 
 def get_reply(input_string): 
-    response = openai.ChatCompletion.create(
-      model="gpt-3.5-turbo",
+    response = client.chat.completions.create(
+      model="gpt-4o",
       messages=[
           {"role": "system", "content": "You are a helpful assistant."},
           {"role": "user", "content": "What is WVSU?"},
